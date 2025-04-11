@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>US4 - AI</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #1a1a1a;
+            color: gold;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: gold;
+            margin-top: 20px;
+        }
+
+        #chat-container {
+            border: 2px solid #444;
+            height: 375px;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            margin-top: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #222;
+            color: gold;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+        }
+
+        #input-container {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 10px;
+            background-color: #333;
+            color: gold;
+            border: 1px solid gold;
+            margin-right: 10px;
+            resize: none;
+            min-height: 50px;
+            transition: background-color 0.3s ease;
+        }
+
+        #user-input:focus {
+            background-color: #444;
+            outline: none;
+        }
+
+        #send-button {
+            width: 50px;
+            height: 50px;
+            background-color: #333;
+            color: gold;
+            border-radius: 50%;
+            border: 1px solid gold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #send-button::before {
+            content: '↑';
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #send-button:hover {
+            background-color: #444;
+            transform: scale(1.1);
+        }
+
+        #send-button:active {
+            background-color: #555;
+        }
+
+        img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        .message.bot {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div class="message bot"><img src="https://voucan-us4.github.io/ai/logo.png" alt="AI Logo">Hello. How are you doing today?</div>
+    </div>
+    
+    <div id="input-container">
+        <textarea id="user-input" placeholder="Type your message here..."></textarea>
+        <button id="send-button"></button>
+    </div>
+
+    <script>
+        document.getElementById('send-button').addEventListener('click', function() {
+            const userInput = document.getElementById('user-input').value.trim();
+            if (userInput) {
+                const newMessage = document.createElement('div');
+                newMessage.classList.add('message', 'user');
+                newMessage.textContent = userInput;
+
+                document.getElementById('chat-container').appendChild(newMessage);
+                document.getElementById('user-input').value = '';
+                document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
+            }
+        });
+    </script>
+    <script src="https://voucan-us4.github.io/ai/ai.js"></script>
+</body>
+</html>
